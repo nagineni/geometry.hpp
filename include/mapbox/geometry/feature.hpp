@@ -84,8 +84,12 @@ struct feature_collection : Cont<feature<T>>
     using coordinate_type = T;
     using feature_type = feature<T>;
     using container_type = Cont<feature_type>;
-    using container_type::container_type;
     using size_type = typename container_type::size_type;
+
+    feature_collection() = default;
+    feature_collection(feature_collection const&) = default;
+    feature_collection(std::initializer_list<feature_type> args)
+      : container_type(args) {}
 };
 
 } // namespace geometry
