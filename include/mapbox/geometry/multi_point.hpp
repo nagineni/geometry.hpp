@@ -14,7 +14,11 @@ struct multi_point : Cont<point<T>>
     using coordinate_type = T;
     using point_type = point<T>;
     using container_type = Cont<point_type>;
-    using container_type::container_type;
+
+    multi_point() = default;
+    multi_point(std::initializer_list<point_type> && args)
+      : container_type(std::forward<std::initializer_list<point_type>>(args)) {};
+
     using size_type = typename container_type::size_type;
 };
 
